@@ -1,10 +1,153 @@
 /*
 Theme Name: motaphoto
 Author: Louis JEANTY
-Template: foce
+Template: twentytwentytwo
 Description: Theme enfant motaphoto
 Version: 1.00
 License: GPL
 Tags: 
 Text Domain: motaphoto
 */
+
+/* Header CSS */
+.site-header {
+    background-color: #fff; /* Modifier selon la couleur d'arrière-plan de votre en-tête */
+    padding: 10px 0; /* Ajustez le padding selon les besoins */
+    border-bottom: 1px solid #ddd; /* Ajoute une bordure en bas du header, si nécessaire */
+}
+
+.site-branding {
+    text-align: center; /* Centrer le titre du site */
+    margin: 0; /* Ajustez la marge selon les besoins */
+}
+
+.site-title a {
+    color: #333; /* Couleur du texte pour le titre du site */
+    text-decoration: none; /* Pas de soulignement pour le lien */
+    font-size: 2em; /* Taille du texte du titre */
+    font-weight: bold; /* Gras pour le titre */
+    text-transform: uppercase; /* Mettre le texte en majuscules */
+    letter-spacing: 5px; /* Espacement entre les lettres */
+}
+
+.main-navigation {
+    text-align: center; /* Centrer le menu de navigation */
+    padding: 5px 0; /* Ajustez le padding selon les besoins */
+}
+
+.main-navigation ul {
+    list-style: none; /* Retirer les puces de la liste */
+    padding: 0; /* Aucun padding */
+    margin: 0; /* Aucune marge */
+}
+
+.main-navigation li {
+    display: inline-block; /* Afficher les éléments de menu côte à côte */
+    margin-right: 20px; /* Espace entre les éléments du menu */
+}
+
+.main-navigation a {
+    color: #333; /* Couleur du texte des éléments du menu */
+    text-decoration: none; /* Pas de soulignement pour les liens */
+    font-size: 1em; /* Taille du texte des éléments du menu */
+}
+
+.main-navigation a:hover,
+.main-navigation a:focus {
+    color: #007bff; /* Couleur du texte au survol ou au focus */
+}
+
+/* Ajouter des styles supplémentaires pour les états actifs, les sous-menus, etc. */
+
+/* Contenu du site */
+#content {
+    width: 100%; /* Largeur du contenu */
+    max-width: 1200px; /* Largeur maximale du contenu */
+    margin: 0 auto; /* Centrer le contenu si moins large que max-width */
+    padding: 20px; /* Ajustez le padding selon les besoins */
+}
+
+/* Utilisez des media queries pour rendre le menu réactif */
+@media (max-width: 768px) {
+    .main-navigation li {
+        display: block; /* Empiler les éléments de menu verticalement sur les petits écrans */
+        margin: 0; /* Retirer la marge latérale */
+    }
+
+    .menu-toggle {
+        display: block; /* Afficher le bouton du menu sur les petits écrans */
+    }
+
+    /* Cachez le menu principal lorsque le menu hamburger est présenté */
+    .main-navigation ul {
+        display: none;
+    }
+
+    /* Styles pour le menu ouvert */
+    .main-navigation.toggled ul {
+        display: block;
+    }
+}
+
+/* Footer CSS */
+.site-footer {
+    background-color: #222; /* Couleur de fond du footer */
+    color: #fff; /* Couleur du texte */
+    text-align: center; /* Centrer le contenu du footer */
+    padding: 20px 0; /* Espacement intérieur en haut et en bas */
+    font-size: 0.8em; /* Taille de la police */
+}
+
+.site-footer .site-info {
+    margin: 0; /* Aucune marge pour le conteneur d'information */
+    padding: 10px 0; /* Un peu d'espacement intérieur */
+}
+
+.site-footer .site-info a {
+    color: #fff; /* Couleur des liens */
+    text-decoration: none; /* Pas de soulignement pour les liens */
+    transition: color 0.3s ease; /* Animation de couleur pour les liens */
+}
+
+.site-footer .site-info a:hover {
+    color: #aaa; /* Couleur des liens au survol */
+}
+
+.footer-navigation {
+    margin-top: 10px; /* Espace au-dessus de la navigation */
+}
+
+.footer-navigation ul {
+    list-style-type: none; /* Retirer les puces de la liste */
+    padding-left: 0; /* Aucun padding sur la gauche */
+    margin: 0; /* Aucune marge */
+    display: flex; /* Utiliser Flexbox pour la mise en page */
+    justify-content: center; /* Centrer les éléments dans le conteneur Flex */
+    flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne suivante si nécessaire */
+}
+
+.footer-navigation li {
+    margin: 0 10px; /* Espace horizontal entre les éléments de la liste */
+}
+
+.footer-navigation a {
+    color: #fff; /* Couleur des liens */
+    text-decoration: none; /* Pas de soulignement pour les liens */
+    transition: color 0.3s ease; /* Animation de couleur pour les liens */
+}
+
+.footer-navigation a:hover {
+    color: #aaa; /* Couleur des liens au survol */
+}
+
+@media (max-width: 600px) {
+    .footer-navigation ul {
+        flex-direction: column; /* Empiler verticalement sur les petits écrans */
+    }
+
+    .footer-navigation li {
+        margin: 5px 0; /* Espacement vertical entre les éléments */
+    }
+}
+
+/* Ajoutez d'autres styles spécifiques au footer ici */
