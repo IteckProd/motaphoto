@@ -20,7 +20,7 @@
 
     <nav id="site-navigation" class="main-navigation">
         <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-            <?php esc_html_e('Primary Menu', 'your-theme-slug'); ?>
+            <?php esc_html_e('Primary Menu', 'motaphoto'); ?>
         </button>
         <?php
             wp_nav_menu(array(
@@ -32,5 +32,3 @@
 </header><!-- #masthead -->
 
 <div id="content" class="site-content">
-
-

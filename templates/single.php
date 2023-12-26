@@ -25,6 +25,7 @@
 
     </main><!-- #main -->
 </div><!-- #primary -->
+<?php
+    get_footer();
+?>
 
-<?php get_sidebar(); // Optionnel: inclure la barre latérale si nécessaire ?>
-<?php get_footer(); ?>

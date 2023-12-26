@@ -1,5 +1,4 @@
 <?php
-// Appel de l'en-tête du thème enfant. WordPress cherchera d'abord dans le thème enfant avant de remonter au thème parent.
 get_header(); 
 ?>
 
@@ -35,10 +34,7 @@ get_header();
     </main><!-- #main -->
 </div><!-- #primary -->
 
-<?php
-// Appel de la barre latérale du thème enfant. WordPress cherchera d'abord dans le thème enfant avant de remonter au thème parent.
-get_sidebar(); 
-?>
 
 <?php
-// Appel du pied de page du thème
+    get_footer();
+?>
