@@ -9,145 +9,95 @@ Tags:
 Text Domain: motaphoto
 */
 
-/* Header CSS */
-.site-header {
-    background-color: #fff; /* Modifier selon la couleur d'arrière-plan de votre en-tête */
-    padding: 10px 0; /* Ajustez le padding selon les besoins */
-    border-bottom: 1px solid #ddd; /* Ajoute une bordure en bas du header, si nécessaire */
+/* Style du Header */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
 }
 
-.site-branding {
-    text-align: center; /* Centrer le titre du site */
-    margin: 0; /* Ajustez la marge selon les besoins */
+.header-container {
+    background: #ffffff;
+    overflow: hidden;
+    padding: 10px 20px;
 }
 
-.site-title a {
-    color: #333; /* Couleur du texte pour le titre du site */
-    text-decoration: none; /* Pas de soulignement pour le lien */
-    font-size: 2em; /* Taille du texte du titre */
-    font-weight: bold; /* Gras pour le titre */
-    text-transform: uppercase; /* Mettre le texte en majuscules */
-    letter-spacing: 5px; /* Espacement entre les lettres */
+.site-title {
+    color: #e00000;
+    font-size: 32px;
+    float: left;
+    margin: 0;
 }
 
-.main-navigation {
-    text-align: center; /* Centrer le menu de navigation */
-    padding: 5px 0; /* Ajustez le padding selon les besoins */
+.site-title a{
+    color: #e00000;
+    text-decoration: none;
 }
 
-.main-navigation ul {
-    list-style: none; /* Retirer les puces de la liste */
-    padding: 0; /* Aucun padding */
-    margin: 0; /* Aucune marge */
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Cela alignera le titre et le menu sur des côtés opposés */
+    align-items: center; /* Cela alignera les éléments verticalement */
+    /* Autres styles pour votre header */
 }
 
-.main-navigation li {
-    display: inline-block; /* Afficher les éléments de menu côte à côte */
-    margin-right: 20px; /* Espace entre les éléments du menu */
+.site-title {
+    margin: 0; /* Ajustez selon vos besoins */
 }
 
-.main-navigation a {
-    color: #333; /* Couleur du texte des éléments du menu */
-    text-decoration: none; /* Pas de soulignement pour les liens */
-    font-size: 1em; /* Taille du texte des éléments du menu */
+.header-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Cela alignera les éléments du menu horizontalement */
 }
 
-.main-navigation a:hover,
-.main-navigation a:focus {
-    color: #007bff; /* Couleur du texte au survol ou au focus */
+.header-menu li {
+    padding: 0 15px; /* Espace horizontal entre les éléments du menu */
 }
 
-/* Ajouter des styles supplémentaires pour les états actifs, les sous-menus, etc. */
-
-/* Contenu du site */
-#content {
-    width: 100%; /* Largeur du contenu */
-    max-width: 1200px; /* Largeur maximale du contenu */
-    margin: 0 auto; /* Centrer le contenu si moins large que max-width */
-    padding: 20px; /* Ajustez le padding selon les besoins */
+.header-menu li a {
+    text-decoration: none;
+    color: #000; /* Couleur du texte des éléments du menu */
+    font-weight: bold; /* Si les éléments du menu sont en gras */
 }
 
-/* Utilisez des media queries pour rendre le menu réactif */
-@media (max-width: 768px) {
-    .main-navigation li {
-        display: block; /* Empiler les éléments de menu verticalement sur les petits écrans */
-        margin: 0; /* Retirer la marge latérale */
-    }
-
-    .menu-toggle {
-        display: block; /* Afficher le bouton du menu sur les petits écrans */
-    }
-
-    /* Cachez le menu principal lorsque le menu hamburger est présenté */
-    .main-navigation ul {
-        display: none;
-    }
-
-    /* Styles pour le menu ouvert */
-    .main-navigation.toggled ul {
-        display: block;
-    }
-}
-
-/* Footer CSS */
 .site-footer {
-    background-color: #222; /* Couleur de fond du footer */
-    color: #fff; /* Couleur du texte */
-    text-align: center; /* Centrer le contenu du footer */
-    padding: 20px 0; /* Espacement intérieur en haut et en bas */
-    font-size: 0.8em; /* Taille de la police */
+    background: #f1f1f1; /* Couleur de fond du footer */
+    padding: 20px 0; /* Espace interne en haut et en bas */
+    text-align: center; /* Centrer le contenu */
+    font-size: 16px; /* Taille de la police */
 }
 
-.site-footer .site-info {
-    margin: 0; /* Aucune marge pour le conteneur d'information */
-    padding: 10px 0; /* Un peu d'espacement intérieur */
-}
-
-.site-footer .site-info a {
-    color: #fff; /* Couleur des liens */
-    text-decoration: none; /* Pas de soulignement pour les liens */
-    transition: color 0.3s ease; /* Animation de couleur pour les liens */
-}
-
-.site-footer .site-info a:hover {
-    color: #aaa; /* Couleur des liens au survol */
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espacement entre les éléments du menu et la zone d'information */
 }
 
 .footer-navigation {
-    margin-top: 10px; /* Espace au-dessus de la navigation */
-}
-
-.footer-navigation ul {
-    list-style-type: none; /* Retirer les puces de la liste */
-    padding-left: 0; /* Aucun padding sur la gauche */
-    margin: 0; /* Aucune marge */
-    display: flex; /* Utiliser Flexbox pour la mise en page */
-    justify-content: center; /* Centrer les éléments dans le conteneur Flex */
-    flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne suivante si nécessaire */
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .footer-navigation li {
-    margin: 0 10px; /* Espace horizontal entre les éléments de la liste */
+    display: inline;
+    margin: 0 10px; /* Espace horizontal entre les éléments du menu */
 }
 
 .footer-navigation a {
-    color: #fff; /* Couleur des liens */
-    text-decoration: none; /* Pas de soulignement pour les liens */
-    transition: color 0.3s ease; /* Animation de couleur pour les liens */
+    text-decoration: none;
+    color: #000; /* Couleur du texte des éléments du menu */
 }
 
-.footer-navigation a:hover {
-    color: #aaa; /* Couleur des liens au survol */
+.site-info {
+    color: #000; /* Couleur du texte pour "Tous droits réservés" */
 }
 
-@media (max-width: 600px) {
-    .footer-navigation ul {
-        flex-direction: column; /* Empiler verticalement sur les petits écrans */
-    }
 
-    .footer-navigation li {
-        margin: 5px 0; /* Espacement vertical entre les éléments */
-    }
-}
 
-/* Ajoutez d'autres styles spécifiques au footer ici */
+
