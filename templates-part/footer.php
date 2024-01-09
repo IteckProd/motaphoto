@@ -1,4 +1,5 @@
 <footer id="colophon" class="site-footer">
+<?php get_template_part('templates-part/contact-modal'); ?>
     <div class="footer-container">
         <?php
             // Vous pouvez soit utiliser un menu WordPress pour ces liens, soit les écrire en dur comme ci-dessous
