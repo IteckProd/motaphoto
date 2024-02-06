@@ -1,11 +1,10 @@
 // js/scripts.js
-
 document.addEventListener('DOMContentLoaded', function() {
     // Fonction pour afficher la modale
     function showModal() {
         var modal = document.getElementById('contact-modal');
         if (modal) {
-            modal.style.display = 'flex';  // ou 'block', selon votre mise en page
+            modal.style.display = 'flex';  
         }
     }
 

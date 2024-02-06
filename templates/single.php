@@ -1,8 +1,7 @@
 <?php get_header(); ?>
-
+Single.php
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
-
         <?php
         /* Boucle WordPress pour afficher le contenu de l'article */
         while ( have_posts() ) : the_post();
