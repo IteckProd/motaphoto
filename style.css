@@ -37,11 +37,15 @@ body {
 
 
 .header-container {
+    background: #ffffff;
+    overflow: hidden;
+    padding: 10px 20px;
     display: flex;
-    justify-content: space-between; /* Cela alignera le titre et le menu sur des côtés opposés */
-    align-items: center; /* Cela alignera les éléments verticalement */
-    /* Autres styles pour votre header */
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 14px 10px #00000008; /* Ajout de l'ombre */
 }
+
 
 .site-title {
     margin: 0; /* Ajustez selon vos besoins */
@@ -64,6 +68,9 @@ body {
     font-weight: bold; /* Si les éléments du menu sont en gras */
 }
 
+
+
+/* Style du footer */
 .site-footer {
     padding: 20px 0; /* Espace interne en haut et en bas */
     text-align: center; /* Centrer le contenu */
@@ -107,7 +114,6 @@ body {
     left: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -115,10 +121,80 @@ body {
 .contact-modal form {
     background: #fff;
     padding: 20px;
-    border-radius: 4px;
-    width: 100%;
-    max-width: 500px; /* ou la largeur désirée */
+    border: 5px solid #000000;
 }
+
+/* Styles supplémentaires pour le formulaire */
+.contact-modal label {
+    display: block;
+    text-align: left;
+    font-family: 'Poppins', sans-serif; /* Utilisation de la police Poppins */
+    font-weight: 500;
+    font-size: 12px; /* Taille de la police à 12px */
+    font-weight: 500; /* Épaisseur de la police à 500 */
+    line-height: 18px; /* Hauteur de ligne à 18px */
+    letter-spacing: 0em; /* Espacement des lettres normal */
+    margin-bottom: 5px; /* Espace sous le label */
+    
+}
+
+/* Style pour le titre h1 dans la modale de contact */
+.contact-modal h1 {
+    font-family: 'Space Mono', monospace; /* Assurez-vous que cette police est importée */
+    font-style: italic;
+    font-weight: bold;
+    font-size: 48px; /* Ajustez la taille de la police si nécessaire */
+    line-height: 1; /* Ajustez l'espacement des lignes pour correspondre à votre design */
+    white-space: nowrap; /* Empêche le texte de passer à la ligne suivante */
+    overflow: hidden; /* Cache le contenu débordant du conteneur */
+    text-overflow: clip; /* Coupe le texte au lieu d'afficher des points de suspension */
+    text-transform: uppercase; /* Transforme le texte en majuscules */
+    letter-spacing: -5px; /* Ajustez l'espacement entre les caractères si nécessaire */
+    text-align: justify; /* Justifie le texte pour qu'il remplisse la ligne */
+    margin: 0 5px; /* Ajustez les marges si nécessaire */
+    padding-bottom: 20px;
+}
+
+/* Pseudo-élément pour justifier le texte dans la dernière ligne */
+.contact-modal h1::after {
+    content: '';
+    display: inline-block;
+    height: 0;
+    visibility: hidden;
+}
+
+
+
+
+/* Styles pour les champs de saisie */
+.contact-modal input[type="text"],
+.contact-modal input[type="email"],
+.contact-modal input[type="submit"],
+.contact-modal textarea {
+    width: 100%; /* Pleine largeur */
+    box-sizing: border-box; /* Inclut padding et border dans la largeur */
+    border: 1px solid #000; /* Bordure noire */
+    border-radius: 8px; /* Bords arrondis */
+    padding: 15px; /* Espace intérieur */
+    margin-bottom: 20px; /* Espacement entre les champs */
+}
+
+/* Styles pour le champ de message textarea */
+.contact-modal textarea {
+    height: 80px; /* Définissez la hauteur initiale que vous souhaitez */
+    resize: none; /* Empêche le redimensionnement */
+}
+
+
+/* Style pour le bouton envoyer */
+.contact-modal input[type="submit"] {
+    padding: 10px; /* Espace intérieur pour le bouton */
+    border-radius: 8px; /* Bords arrondis pour le bouton */
+    cursor: pointer; /* Curseur en forme de main lors du survol */
+}
+
+
+
 
 /* Styles globaux */
 body, h1, p {
