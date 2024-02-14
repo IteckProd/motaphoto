@@ -17,6 +17,12 @@ body {
     background: #fff;
 }
 
+/* Styles globaux */
+body, h1, p {
+    margin: 0;
+    padding: 0;
+}
+
 .header-container {
     background: #ffffff;
     overflow: hidden;
@@ -120,8 +126,11 @@ body {
 
 .contact-modal form {
     background: #fff;
+    border: 5px solid hsl(0, 0%, 0%);
+}
+
+.form-container {
     padding: 20px;
-    border: 5px solid #000000;
 }
 
 /* Styles supplémentaires pour le formulaire */
@@ -138,33 +147,15 @@ body {
     
 }
 
-/* Style pour le titre h1 dans la modale de contact */
-.contact-modal h1 {
-    font-family: 'Space Mono', monospace; /* Assurez-vous que cette police est importée */
-    font-style: italic;
-    font-weight: bold;
-    font-size: 48px; /* Ajustez la taille de la police si nécessaire */
-    line-height: 1; /* Ajustez l'espacement des lignes pour correspondre à votre design */
-    white-space: nowrap; /* Empêche le texte de passer à la ligne suivante */
-    overflow: hidden; /* Cache le contenu débordant du conteneur */
-    text-overflow: clip; /* Coupe le texte au lieu d'afficher des points de suspension */
-    text-transform: uppercase; /* Transforme le texte en majuscules */
-    letter-spacing: -5px; /* Ajustez l'espacement entre les caractères si nécessaire */
-    text-align: justify; /* Justifie le texte pour qu'il remplisse la ligne */
-    margin: 0 5px; /* Ajustez les marges si nécessaire */
-    padding-bottom: 20px;
+/* Style du Header de formulaire */
+.form-header {
+    background-image: url('http://motaphoto.local/wp-content/uploads/2024/02/Contact-header.png');
+    background-position: center; /* Centre l'image dans le conteneur */
+    height: 107px; /* Hauteur fixe pour le header */
+    width: 100%; /* Largeur ajustable selon le conteneur parent */
+    background-repeat: no-repeat;
+    padding-top: 18px;
 }
-
-/* Pseudo-élément pour justifier le texte dans la dernière ligne */
-.contact-modal h1::after {
-    content: '';
-    display: inline-block;
-    height: 0;
-    visibility: hidden;
-}
-
-
-
 
 /* Styles pour les champs de saisie */
 .contact-modal input[type="text"],
@@ -193,15 +184,6 @@ body {
     cursor: pointer; /* Curseur en forme de main lors du survol */
 }
 
-
-
-
-/* Styles globaux */
-body, h1, p {
-    margin: 0;
-    padding: 0;
-}
-
 /* Styles du conteneur principal */
 .container {
     display: flex;
@@ -213,13 +195,12 @@ body, h1, p {
 
 .photo-content {
     display: flex;
-    justify-content: space-between;
     align-items: flex-end; /* Alignement des enfants au bas du conteneur */
     padding-bottom: 10px;
 }
 
 /* Styles pour le titre */
-h1 {
+h2 {
     font-family: 'Space Mono', monospace;
     font-size: 66px;
     font-style: italic;
@@ -229,6 +210,9 @@ h1 {
     letter-spacing: 0em;
     text-align: left;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    max-width: 70%;
 }
 
 /* Styles pour les informations de la photo */
@@ -243,7 +227,8 @@ h1 {
 
 /* Styles pour l'image principale */
 .photo-image {
-    flex-basis: 30%;
+    flex-basis: 40%;
+    margin-left: auto;
 }
 
 .photo-image img {
@@ -252,19 +237,19 @@ h1 {
     display: block;
 }
 
-.photo-navigation-section {
-    position: relative;
-}
-
 .top-line, .bottom-line {
     height: 1px;
     background-color: black;
+}
+
+.top-line{
     margin: 20px 0;
 }
 
 .content-section {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .arrow-preview, .interest-button-section {
@@ -272,8 +257,24 @@ h1 {
     align-items: center;
 }
 
+.contact-button {
+    width: 272px;
+    height: 50px;
+    padding: 8px, 15px, 8px, 15px;
+    border-radius: 2px;
+    gap: 10px;
+    font-family: Space Mono;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    border-color: #fff;
+
+}
+
 .arrow-preview {
     flex: 1; 
+    margin-left: auto;
 }
 
 .interest-button-section {

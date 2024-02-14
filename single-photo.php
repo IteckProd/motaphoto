@@ -6,13 +6,19 @@
         <div class="photo-content">
             <div class="photo-info">
                 <!-- Titre de la photo -->
-            <h1><?php the_title(); ?></h1>
+                <h2><?php the_title(); ?></h2>
+                <br>
                 <!-- Informations sur la photo -->
                 <p>Référence: <?php echo esc_html(get_post_meta(get_the_ID(), 'reference', true)); ?></p>
+                <br>
                 <p>Catégorie: <?php the_terms(get_the_ID(), 'categorie'); ?></p>
+                <br>
                 <p>Format: <?php the_terms(get_the_ID(), 'format'); ?></p>
+                <br>
                 <p>Type: <?php echo esc_html(get_post_meta(get_the_ID(), 'type', true)); ?></p>
+                <br>
                 <p>Année: <?php echo esc_html(get_the_date('Y')); ?></p>
+                <div class="top-line"></div>
             </div>
 
             <!-- Image Principale de la photo -->
@@ -21,31 +27,45 @@
                     <?php the_post_thumbnail('full'); ?>
                 <?php endif; ?>
             </div>
+            
         </div>
         
-        <div class="photo-navigation-section">
-            <div class="top-line"></div>
-            
-            <div class="content-section">
-                <div class="interest-button-section">
-                    <p>Cette photo vous intéresse ?</p>
-                    <button class="contact-button">Contact</button>
-                </div>
-
-                <div class="arrow-preview">
-                    <span class="arrow left-arrow">←</span>
-                    <img src="path-to-next-photo-thumbnail.jpg" alt="Aperçu" class="photo-preview">
-                    <span class="arrow right-arrow">→</span>
-                </div>
+        
+        <div class="content-section">
+            <div class="interest-button-section">
+                <p>Cette photo vous intéresse ?</p>
+                <button class="contact-button">Contact</button>
             </div>
-            
-            <div class="bottom-line"></div>
+
+            <div class="arrow-preview">
+            <?php
+                // Obtenez le prochain article
+                $next_post = get_next_post();
+                if (!empty($next_post)) {
+                    // Obtenez l'URL de l'image à la une du prochain article
+                    $next_post_image_url = get_the_post_thumbnail_url($next_post->ID, 'full');
+
+                    if ($next_post_image_url) {
+                        // Affichez l'image
+                        echo '<div class="arrow-preview">';
+                        echo '<span class="arrow left-arrow">←</span>';
+                        echo '<img src="' . esc_url($next_post_image_url) . '" alt="Aperçu du prochain article" class="photo-preview">';
+                        echo '<span class="arrow right-arrow">→</span>';
+                        echo '</div>';
+                    }
+                }
+                ?>
+
+            </div>
         </div>
+
+        
 
     <?php endwhile; endif; ?>
 
     <!-- Zone pour les photos apparentées -->
     <div class="related-photos">
+    <div class="bottom-line"></div>
         <h2>Vous aimerez aussi</h2>
         <?php
             // WP_Query pour les photos apparentées
