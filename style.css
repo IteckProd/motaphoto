@@ -196,7 +196,7 @@ body, h1, p {
 .photo-content {
     display: flex;
     align-items: flex-end; /* Alignement des enfants au bas du conteneur */
-    padding-bottom: 10px;
+    padding-bottom: 8px;
 }
 
 /* Styles pour le titre */
@@ -223,11 +223,12 @@ h2 {
     line-height: 21px;
     letter-spacing: 0.1em;
     text-align: left;
+    flex-basis: 51%;
 }
 
 /* Styles pour l'image principale */
 .photo-image {
-    flex-basis: 40%;
+    flex-basis: 48%;
     margin-left: auto;
 }
 
@@ -243,7 +244,8 @@ h2 {
 }
 
 .top-line{
-    margin: 20px 0;
+    margin-top: 20px;
+    width: 100%;
 }
 
 .content-section {
@@ -252,33 +254,38 @@ h2 {
     width: 100%;
 }
 
-.arrow-preview, .interest-button-section {
+.interest-button-section {
     display: flex;
     align-items: center;
 }
 
-.contact-button {
+.contact-us-button {
     width: 272px;
     height: 50px;
-    padding: 8px, 15px, 8px, 15px;
+    appearance: none;
+    background-color: #D8D8D8;
     border-radius: 2px;
-    gap: 10px;
+    border-color: #D8D8D8;
+    border-style: solid;
+    cursor: pointer;
     font-family: Space Mono;
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: 0em;
-    border-color: #fff;
+    margin-left: auto;
+;
 
 }
 
 .arrow-preview {
-    flex: 1; 
+    position: relative; /* Le conteneur parent doit être positionné relativement */
     margin-left: auto;
+    align-items: flex-end;
 }
 
 .interest-button-section {
-    flex: 1; 
+    flex-basis: 51%;
 }
 
 .arrow {
@@ -286,27 +293,32 @@ h2 {
     margin: 0 15px;
 }
 
-.photo-preview {
-    width: 60px; /* Ajustez la taille de l'aperçu de la photo */
-    height: auto;
+.photo-preview-container{
+    display: block; /* Assurez-vous qu'il est affiché */
+    position: absolute; /* Positionnement absolu */
+    bottom: 100%; /* Positionner au-dessus du conteneur parent */ 
+    z-index: 10; /* S'assurer qu'il est au-dessus des autres éléments */
+    height: 84px;
 }
 
-.contact-button {
-    padding: 10px 20px;
-    margin-left: 20px; /* Espace entre le texte et le bouton */
-    /* Autres styles de bouton */
-}
 
 
 /* Styles pour les photos apparentées */
 .related-photos {
     flex-basis: 100%;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
-.related-photos h2 {
-    text-align: center;
-    margin-bottom: 20px;
+.related-photos h3 {
+    font-family: Space Mono;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0.1em;
+    text-align: left;
+    padding-top: 70px;
+    padding-bottom: 50px;
+
 }
 
 .related-photos img {
@@ -322,9 +334,7 @@ h2 {
 
 /* Réponse pour les petits écrans */
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
+
 
     .photo-info,
     .photo-image {
