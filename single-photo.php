@@ -70,27 +70,46 @@
 
     <!-- Zone pour les photos apparentées -->
     <div class="related-photos">
-    <div class="bottom-line"></div>
+        <div class="bottom-line"></div>
         <h3>Vous aimerez aussi</h3>
+        <div class="photos-container">
         <?php
-            // WP_Query pour les photos apparentées
-            $related_photos = new WP_Query(array(
-                'post_type' => 'photo', // Remplacez 'photo' par le vrai nom de votre CPT
-                'posts_per_page' => 2,
-                'category__in' => wp_get_post_categories($post->ID),
-                'post__not_in' => array($post->ID)
-            ));
+        // Récupère les termes de la taxonomie personnalisée pour le post courant.
+        // Récupère les termes de la taxonomie personnalisée pour le post courant.
+            $terms = wp_get_post_terms($post->ID, 'categorie', array("fields" => "ids"));
 
-            if ( $related_photos->have_posts() ) :
-                while ( $related_photos->have_posts() ) : $related_photos->the_post();
-                    // Ici, vous intégrerez le markup HTML pour chaque photo apparentée
-                    // Par exemple, l'image de la photo avec un lien vers celle-ci
-                    the_post_thumbnail('thumbnail');
-                endwhile;
-                wp_reset_postdata(); // Important : remettre à zéro postdata
-            endif;
+            // ID actuel du post pour l'exclure de la requête des photos apparentées
+            $current_post_id = get_the_ID();
+
+            // Vérifie si des termes existent et crée une requête pour les photos apparentées.
+            if (!empty($terms)) {
+                $related_photos = new WP_Query(array(
+                    'post_type' => 'photo',
+                    'posts_per_page' => 2,
+                    'post__not_in' => array($current_post_id), // Exclut le post actuel
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'categorie',
+                            'field'    => 'term_id',
+                            'terms'    => $terms,
+                        ),
+                    ),
+                ));
+
+                if ($related_photos->have_posts()) :
+                    while ($related_photos->have_posts()) : $related_photos->the_post();
+                        // Ajouter le lien autour de l'image
+                        echo '<a href="' . get_permalink() . '" class="related-photo-link">';
+                        the_post_thumbnail('full');
+                        echo '</a>';
+                    endwhile;
+                    wp_reset_postdata();
+                endif;
+            }
         ?>
+        </div>
     </div>
+
 </div>
 
 <?php get_footer(); ?>

@@ -321,27 +321,32 @@ h2 {
 
 }
 
-.related-photos img {
-    width: 24%;
-    margin-right: 1%;
-    margin-bottom: 1%;
+.related-photos .photos-container {
+    display: flex;
+    justify-content: space-between; /* Assure un espacement entre les éléments */
+    gap: 20px; /* Espace entre les photos */
 }
 
-/* Dernière image sans marge à droite */
-.related-photos img:last-child {
-    margin-right: 0;
+.related-photo-link img {
+    width: 100%; /* Adapte la largeur à celle du conteneur */
+    height: auto; /* Maintient l'aspect ratio */
+    aspect-ratio: 4 / 3; /* Force le ratio à 4:3 */
+    object-fit: cover; /* Couvre la zone sans perdre le ratio */
 }
+
+
+
 
 /* Réponse pour les petits écrans */
 @media (max-width: 768px) {
 
 
     .photo-info,
-    .photo-image {
+    .photo-image,
+    .related-photos,
+    .related-photo-link {
         flex-basis: 100%;
     }
 
-    .related-photos img {
-        width: 100%;
-    }
+
 }
