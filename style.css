@@ -291,6 +291,8 @@ h2 {
 .arrow {
     cursor: pointer;
     margin: 0 15px;
+    text-decoration: none;
+    color: #000;
 }
 
 .photo-preview-container{
@@ -357,7 +359,7 @@ h2 {
 
 .centered-text {
     font-family: 'Space Mono', monospace;
-    font-size: 96px;
+    font-size: 5em;
     font-style: italic;
     font-weight: 700;
     line-height: 142px;
@@ -366,7 +368,28 @@ h2 {
     color: #FFFFFF; /* Choose color that fits the background */
 }
 
+.photos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Cela assure un espacement autour de chaque élément */
+    margin: 20px; /* Espace entre les éléments */
+    margin-left: 40px;
+    margin-right: 40px;
+}
 
+.photo-item {
+    width: calc(50% - 40px);
+    margin: 20px; /* 50% pour 2 par ligne, ajustez le 10px si vous changez le gap */
+    overflow: hidden; /* Si vous utilisez object-fit pour vos images */
+    height: auto; /* Maintient l'aspect ratio */
+    aspect-ratio: 1; /* Force le ratio à 4:3 */
+}
+
+.photo-item img {
+    object-fit: cover;
+    max-height: 100%;
+    max-width: 100%;
+}
 
 
 /* Réponse pour les petits écrans */
@@ -376,7 +399,8 @@ h2 {
     .photo-info,
     .photo-image,
     .related-photos,
-    .related-photo-link {
+    .related-photo-link
+    .photo-thumbnail {
         flex-basis: 100%;
     }
 

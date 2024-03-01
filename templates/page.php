@@ -20,6 +20,7 @@ if ($random_photo_query->have_posts()) {
 // Réinitialise les données de post global
 wp_reset_postdata();
 ?>
+
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
     <section class="hero-section" style="<?php if (!empty($background_image_url)) echo 'background-image: url(\'' . esc_url($background_image_url) . '\');'; ?>">
@@ -28,19 +29,31 @@ wp_reset_postdata();
         </div>
     </section>
 
+    <div class="photos-grid">
+    <?php
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => -1 // -1 pour afficher toutes les photos
+    );
+    $photos_query = new WP_Query($args);
 
-
-
-
-        <?php
-        // Commencer la boucle
-        if (have_posts()) :
-            while (have_posts()) : the_post();
-                // Afficher le contenu de la page
-                the_content();
-            endwhile;
-        endif;
+    if ($photos_query->have_posts()) : while ($photos_query->have_posts()) : $photos_query->the_post();
+        // Ici, vous intégrez le bloc d'affichage d'une photo
         ?>
+        <div class="photo-item">
+            <?php if (has_post_thumbnail()) : ?>
+                <a href="<?php the_permalink(); ?>">
+                    <?php the_post_thumbnail('full'); ?>
+                </a>
+            <?php endif; ?>
+            <!-- Ajoutez ici d'autres détails si vous le souhaitez -->
+        </div>
+        <?php
+    endwhile; endif;
+    wp_reset_postdata();
+    ?>
+</div>
+
 
     </main><!-- #main -->
 </div><!-- #primary -->
