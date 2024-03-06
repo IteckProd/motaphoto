@@ -33,7 +33,7 @@ wp_reset_postdata();
     <?php
     $args = array(
         'post_type' => 'photo',
-        'posts_per_page' => -1 // -1 pour afficher toutes les photos
+        'posts_per_page' => 8 // -1 pour afficher toutes les photos
     );
     $photos_query = new WP_Query($args);
 
