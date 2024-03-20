@@ -42,15 +42,34 @@ function load_custom_template($template) {
 }
 
 function loadmore_ajax_handler(){
-  // préparez vos arguments pour la requête
   $args = array(
     'post_type' => 'photo',
-    'posts_per_page' => 4, // Remplacez 4 par le nombre de posts que vous voulez charger à chaque fois
+    'posts_per_page' => 8, 
     'paged' => (isset($_POST['page']) ? $_POST['page'] + 1 : 1), // Commence à la page 1 et incrémente à chaque appel AJAX
     'post_status' => 'publish'
-);
+  );
+  error_log($_POST['category']);
+  if (!empty($_POST['category'])) {
+    
+    $args['tax_query'][] = array(
+        'taxonomy' => 'categorie', // Remplacez par l'ID exact de votre taxonomie pour les catégories
+        'field'    => 'id',
+        'terms'    => $category,
+    );
+  }
+  if (!empty($_POST['format'])) {
+    $args['tax_query'][] = array(
+        'taxonomy' => 'format', // Remplacez par l'ID exact de votre taxonomie pour les formats
+        'field'    => 'id',
+        'terms'    => $_POST['format']
+    );
+  }
 
-  error_log(print_r($args, true));
+  // S'assurer de gérer les multiples conditions taxonomiques
+  if (!empty($args['tax_query'])) {
+    $args['tax_query']['relation'] = 'AND'; 
+  }
+
   // effectuez la requête WP_Query
   $photos_query = new WP_Query($args);
   if ($photos_query->have_posts()) : while ($photos_query->have_posts()) : $photos_query->the_post();
@@ -62,7 +81,6 @@ function loadmore_ajax_handler(){
                     <?php the_post_thumbnail('full'); ?>
                 </a>
             <?php endif; ?>
-            <!-- Ajoutez ici d'autres détails si vous le souhaitez -->
         </div>
         <?php
     endwhile; endif;
@@ -73,15 +91,47 @@ function loadmore_ajax_handler(){
 add_action('wp_ajax_loadmore', 'loadmore_ajax_handler');
 add_action('wp_ajax_nopriv_loadmore', 'loadmore_ajax_handler');
 
+function load_photos() {
+  $args = array(
+      'post_type' => 'photo',
+      'posts_per_page' => 8,
+      'paged' => (isset($_POST['page']) ? $_POST['page'] : 1), // Commence à la page 1 et incrémente à chaque appel AJAX
+      'post_status' => 'publish',
+      //chercher dans la taxonomie la catégorie
+  );
+  $photos_query = new WP_Query($args);
+  if ($photos_query->have_posts()) : 
+      while ($photos_query->have_posts()) : $photos_query->the_post();
+          // Ici, génère le HTML pour chaque photo
+          ?>
+          <div class="photo-item">
+              <?php if (has_post_thumbnail()) : ?>
+                  <a href="<?php the_permalink(); ?>">
+                      <?php the_post_thumbnail('full'); ?>
+                  </a>
+              <?php endif; ?>
+              <!-- Plus de détails ici si nécessaire -->
+          </div>
+          <?php
+      endwhile;
+  endif;
+  wp_reset_postdata();
+
+  wp_die(); // Termine correctement la requête AJAX
+}
+add_action('wp_ajax_load_photos', 'load_photos'); // Pour les utilisateurs connectés
+add_action('wp_ajax_nopriv_load_photos', 'load_photos'); // Pour les utilisateurs non connectés
+
+
 function loadmore_scripts() {
-  global $wp_query; // N'oubliez pas d'ajouter global $wp_query si vous êtes en dehors de la boucle
+  global $wp_query;
 
   wp_enqueue_script( 'jquery' );
   wp_register_script( 'my_loadmore', get_stylesheet_directory_uri() . '/js/infinite-scroll.js', array('jquery') );
   wp_enqueue_script( 'my_loadmore' );
 
   $query_vars = $wp_query->query_vars;
-  $query_vars['post_type'] = 'photo'; // Assurez-vous que le type de post est toujours 'photo'
+  $query_vars['post_type'] = 'photo'; 
   wp_localize_script('my_loadmore', 'loadmore_params', array(
       'ajaxurl' => admin_url('admin-ajax.php'),
       'posts' => json_encode($query_vars),

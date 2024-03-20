@@ -259,7 +259,7 @@ h2 {
     align-items: center;
 }
 
-.contact-us-button {
+.contact-us-button, .load-more {
     width: 272px;
     height: 50px;
     appearance: none;
@@ -273,7 +273,11 @@ h2 {
     font-weight: 400;
     line-height: 18px;
     letter-spacing: 0em;
+    display: flex;
     margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
 ;
 
 }
@@ -390,6 +394,35 @@ h2 {
     max-height: 100%;
     max-width: 100%;
 }
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; 
+}
+
+.filters select {
+    padding: 10px 20px;
+    margin-right: 20px;
+    border: 1,3px solid #b8bbc2; 
+    border-radius: 8px; 
+    background-color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Container pour les sélecteurs Catégorie et Format */
+.filter-left {
+    display: flex;
+    gap: 10px; 
+}
+
+/* Applique le style seulement pour "Trier par" */
+#photo-order {
+    margin-left: auto; 
+}
+
 
 
 /* Réponse pour les petits écrans */

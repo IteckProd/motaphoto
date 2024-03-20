@@ -23,38 +23,30 @@ wp_reset_postdata();
 
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
-    <section class="hero-section" style="<?php if (!empty($background_image_url)) echo 'background-image: url(\'' . esc_url($background_image_url) . '\');'; ?>">
-        <div class="hero-content">
-            <h1 class="centered-text">PHOTOGRAPHE EVENT</h1>
+        <section class="hero-section" style="<?php if (!empty($background_image_url)) echo 'background-image: url(\'' . esc_url($background_image_url) . '\');'; ?>">
+            <div class="hero-content">
+                <h1 class="centered-text">PHOTOGRAPHE EVENT</h1>
+            </div>
+        </section>
+
+        <div class="filters">
+            <select id="photo-category">
+                <option value="">Catégories</option>
+            </select>
+            <select id="photo-format">
+                <option value="">Formats</option>
+            </select>
+            <select id="photo-order">
+                <option value="">Trier par</option>
+                <option value="DESC">Plus récentes</option>
+                <option value="ASC">Plus anciennes</option>
+            </select>
         </div>
-    </section>
 
-    <div class="photos-grid">
-    <?php
-    $args = array(
-        'post_type' => 'photo',
-        'posts_per_page' => 8 // -1 pour afficher toutes les photos
-    );
-    $photos_query = new WP_Query($args);
 
-    if ($photos_query->have_posts()) : while ($photos_query->have_posts()) : $photos_query->the_post();
-        // Ici, vous intégrez le bloc d'affichage d'une photo
-        ?>
-        <div class="photo-item">
-            <?php if (has_post_thumbnail()) : ?>
-                <a href="<?php the_permalink(); ?>">
-                    <?php the_post_thumbnail('full'); ?>
-                </a>
-            <?php endif; ?>
-            <!-- Ajoutez ici d'autres détails si vous le souhaitez -->
+        <div class="photos-grid">
         </div>
-        <?php
-    endwhile; endif;
-    wp_reset_postdata();
-    ?>
-</div>
-
-
+        <button id="loadMore" class="load-more">Charger plus</button>
     </main><!-- #main -->
 </div><!-- #primary -->
 

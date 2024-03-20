@@ -1,32 +1,28 @@
-jQuery(function($){
-    var canBeLoaded = true, // cette variable est pour éviter plusieurs chargements
-        bottomOffset = 3000; // distance du bas de la page pour déclencher le chargement
-
-    $(window).scroll(function(){
-        var postsData = loadmore_params.posts;
+jQuery(function($) {
+    $('#loadMore').on('click', function() {
+        console.log('Avant l\'appel AJAX, page courante : ', loadmore_params.current_page);
         var data = {
             'action': 'loadmore',
-            'query': postsData,
-            'page' : loadmore_params.current_page
+            'query': loadmore_params.posts,
+            'page': loadmore_params.current_page
         };
-        if( $(document).scrollTop() > ( $(document).height() - bottomOffset ) && canBeLoaded ){
-            
-            $.ajax({
-                url : loadmore_params.ajaxurl,
-                data: data,
-                type:'POST',
-                beforeSend: function( xhr ){
-                    canBeLoaded = false; // empêche plusieurs appels
-                },
-                success: function(data) {
-                    if (data) { // Vérifie si des éléments de photo sont présents
-                        $('#main').find('.photos-grid').append(data); // Insère de nouveaux posts
-                        canBeLoaded = true; // Permet de charger plus de posts lors du prochain défilement
-                        loadmore_params.current_page++;
-                    }
+        console.log(data);
+        $.ajax({
+            url: loadmore_params.ajaxurl,
+            data: data,
+            type: 'POST',
+            beforeSend: function(xhr) {
+                $('#loadMore').text('Chargement...');
+            },
+            success: function(data) {
+                if (data) {
+                    $('#main').find('.photos-grid').append(data);
+                    loadmore_params.current_page++;
+                    $('#loadMore').text('Charger plus');
+                } else {
+                    $('#loadMore').hide(); // Cache le bouton s'il n'y a plus d'articles à charger
                 }
-                
-            });
-        }
+            }
+        });
     });
 });

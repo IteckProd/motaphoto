@@ -73,3 +73,63 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+jQuery(function($){
+    // Chargement des catégories de photos
+    $.get('/wp-json/wp/v2/categorie').done(function(categories) {
+        categories.forEach(function(category) {
+            $('#photo-category').append(`<option value="${category.id}">${category.name}</option>`);
+        });
+    });
+
+    $.get('/wp-json/wp/v2/format').done(function(formats) {
+        formats.forEach(function(format) {
+            $('#photo-format').append(`<option value="${format.id}">${format.name}</option>`);
+        });
+    });
+});
+
+
+
+jQuery(document).ready(function($) {
+    function loadPhotos() {
+        var data = {
+            'action': 'load_photos',
+            'query': loadmore_params.posts,
+            'page': loadmore_params.current_page,
+            'category': $('#photo-category :selected').text(), 
+            'format': $('#photo-format').val(), 
+            'order': $('#photo-order').val() 
+        };
+        $.ajax({
+            url: loadmore_params.ajaxurl,
+            data: data,
+            type: 'POST',
+            beforeSend: function(xhr) {
+                $('#loadMore').text('Chargement...');
+            },
+            success: function(data) {
+                if (data) {
+                    $('#main').find('.photos-grid').append(data);
+                    $('#loadMore').text('Charger plus');
+                } else {
+                    $('#loadMore').hide(); // Cache le bouton s'il n'y a plus d'articles à charger
+                }
+            }
+        });
+    }
+
+    loadPhotos();
+
+
+
+    // Écouteurs d'événements pour les changements de filtres
+    $('#photo-category, #photo-format, #photo-order').change(function() {
+        loadmore_params.current_page = 1;
+        $('#main').find('.photos-grid').empty()
+        loadPhotos();
+    });
+});
+
+
+
