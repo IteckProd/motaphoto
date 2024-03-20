@@ -97,10 +97,11 @@ jQuery(document).ready(function($) {
             'action': 'load_photos',
             'query': loadmore_params.posts,
             'page': loadmore_params.current_page,
-            'category': $('#photo-category :selected').text(), 
+            'categorie': $('#photo-category :selected').text(), 
             'format': $('#photo-format').val(), 
             'order': $('#photo-order').val() 
         };
+        
         $.ajax({
             url: loadmore_params.ajaxurl,
             data: data,
@@ -120,14 +121,24 @@ jQuery(document).ready(function($) {
     }
 
     loadPhotos();
-
-
-
-    // Écouteurs d'événements pour les changements de filtres
     $('#photo-category, #photo-format, #photo-order').change(function() {
-        loadmore_params.current_page = 1;
-        $('#main').find('.photos-grid').empty()
-        loadPhotos();
+        var category = $('#photo-category').val();
+        var format = $('#photo-format').val();
+        var order = $('#photo-order').val();
+        
+        $.ajax({
+            url: loadmore_params.ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'filter_photos', // Le nom de l'action dans WordPress
+                category: category,
+                format: format,
+                order: order
+            },
+            success: function(response) {
+                $('#main').find('.photos-grid').html(response); // Met à jour le conteneur des photos avec la réponse
+            }
+        });
     });
 });
 

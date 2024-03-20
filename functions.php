@@ -48,27 +48,6 @@ function loadmore_ajax_handler(){
     'paged' => (isset($_POST['page']) ? $_POST['page'] + 1 : 1), // Commence à la page 1 et incrémente à chaque appel AJAX
     'post_status' => 'publish'
   );
-  error_log($_POST['category']);
-  if (!empty($_POST['category'])) {
-    
-    $args['tax_query'][] = array(
-        'taxonomy' => 'categorie', // Remplacez par l'ID exact de votre taxonomie pour les catégories
-        'field'    => 'id',
-        'terms'    => $category,
-    );
-  }
-  if (!empty($_POST['format'])) {
-    $args['tax_query'][] = array(
-        'taxonomy' => 'format', // Remplacez par l'ID exact de votre taxonomie pour les formats
-        'field'    => 'id',
-        'terms'    => $_POST['format']
-    );
-  }
-
-  // S'assurer de gérer les multiples conditions taxonomiques
-  if (!empty($args['tax_query'])) {
-    $args['tax_query']['relation'] = 'AND'; 
-  }
 
   // effectuez la requête WP_Query
   $photos_query = new WP_Query($args);
@@ -99,6 +78,8 @@ function load_photos() {
       'post_status' => 'publish',
       //chercher dans la taxonomie la catégorie
   );
+
+  
   $photos_query = new WP_Query($args);
   if ($photos_query->have_posts()) : 
       while ($photos_query->have_posts()) : $photos_query->the_post();
@@ -140,6 +121,66 @@ function loadmore_scripts() {
   ));
 }
 add_action( 'wp_enqueue_scripts', 'loadmore_scripts' );
+
+add_action('wp_ajax_filter_photos', 'filter_photos_handler');
+add_action('wp_ajax_nopriv_filter_photos', 'filter_photos_handler');
+
+function filter_photos_handler() {
+    // Récupère les paramètres de filtre depuis la requête AJAX
+    $category = isset($_POST['category']) ? intval($_POST['category']) : '';
+    $format = isset($_POST['format']) ? intval($_POST['format']) : '';
+    $order = isset($_POST['order']) && in_array($_POST['order'], ['ASC', 'DESC']) ? $_POST['order'] : 'DESC';
+    error_log($category);
+    error_log($format);
+    error_log($order);
+
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => -1, // Ou toute autre limite
+        'order' => $order,
+        'tax_query' => array('relation' => 'AND')
+    );
+
+    if (!empty($category)) {
+        $args['tax_query'][] = array(
+            'taxonomy' => 'categorie', 
+            'field' => 'id',
+            'terms' => $category
+        );
+    }
+   
+    if (!empty($format)) {
+        $args['tax_query'][] = array(
+            'taxonomy' => 'format', 
+            'field' => 'id',
+            'terms' => $format
+        );
+    }
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            ?>
+              <div class="photo-item">
+                <?php if (has_post_thumbnail()) : ?>
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_post_thumbnail('full'); ?>
+                    </a>
+                <?php endif; ?>
+                <!-- Plus de détails ici si nécessaire -->
+            </div>
+          <?php
+        }
+    } else {
+        echo '<p>Aucune photo trouvée.</p>';
+    }
+
+    wp_reset_postdata();
+    wp_die();
+}
+
 
 
 
