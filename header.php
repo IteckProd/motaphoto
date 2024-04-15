@@ -9,17 +9,25 @@
 
 <body <?php body_class(); ?>>
     <header class="header-container">
-        <div class="site-branding">
-            <!-- Votre logo ou le nom du site ici -->
-            <h1 class="site-title">
-                <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                    <?php bloginfo('name'); ?>
-                </a>
-            </h1>
+        <div class="top-row">
+            <div class="site-branding">
+                <!-- Votre logo ou le nom du site ici -->
+                <h1 class="site-title">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+                        <?php bloginfo('name'); ?>
+                    </a>
+                </h1>
+            </div>
+            
+            <div class="menu-burger">
+                ☰
+            </div>
         </div>
-        
-        <!-- Inclure le menu ici -->
-        <?php get_template_part( 'templates-part/menu-header' ); ?>
+
+        <!-- Enveloppe spécifique pour le menu -->
+        <div class="menu-wrapper">
+            <?php get_template_part( 'templates-part/menu-header' ); ?>
+        </div>
         
     </header>
     <!-- Reste du contenu -->

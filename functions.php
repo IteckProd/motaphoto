@@ -130,9 +130,6 @@ function filter_photos_handler() {
     $category = isset($_POST['category']) ? intval($_POST['category']) : '';
     $format = isset($_POST['format']) ? intval($_POST['format']) : '';
     $order = isset($_POST['order']) && in_array($_POST['order'], ['ASC', 'DESC']) ? $_POST['order'] : 'DESC';
-    error_log($category);
-    error_log($format);
-    error_log($order);
 
     $args = array(
         'post_type' => 'photo',

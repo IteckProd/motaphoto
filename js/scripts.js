@@ -121,6 +121,7 @@ jQuery(document).ready(function($) {
     }
 
     loadPhotos();
+    
     $('#photo-category, #photo-format, #photo-order').change(function() {
         var category = $('#photo-category').val();
         var format = $('#photo-format').val();
@@ -141,6 +142,21 @@ jQuery(document).ready(function($) {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var burger = document.querySelector('.menu-burger');
+    var menu = document.querySelector('.menu-wrapper'); // Cible l'enveloppe du menu
+
+    burger.addEventListener('click', function() {
+        // Vérifie si le menu est visible et bascule son état
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.display = 'block';
+        }
+    });
+});
+
 
 
 

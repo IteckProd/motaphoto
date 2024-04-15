@@ -74,6 +74,10 @@ body, h1, p {
     font-weight: bold; /* Si les éléments du menu sont en gras */
 }
 
+.menu-burger {
+    display: none; /* Affiche le bouton burger */
+}
+
 
 
 /* Style du footer */
@@ -202,7 +206,7 @@ body, h1, p {
 /* Styles pour le titre */
 h2 {
     font-family: 'Space Mono', monospace;
-    font-size: 66px;
+    font-size: 3.5em;
     font-style: italic;
     font-weight: 400;
     color: #000;
@@ -212,7 +216,7 @@ h2 {
     margin-bottom: 20px;
     text-transform: uppercase;
     word-wrap: break-word;
-    max-width: 70%;
+    max-width: 100%;
 }
 
 /* Styles pour les informations de la photo */
@@ -221,9 +225,16 @@ h2 {
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
+    text-decoration: none;
+    color: #000;
     letter-spacing: 0.1em;
     text-align: left;
     flex-basis: 51%;
+}
+
+.photo-info a {
+    text-decoration: none;
+    color: #000;
 }
 
 /* Styles pour l'image principale */
@@ -368,8 +379,7 @@ h2 {
     font-weight: 700;
     line-height: 142px;
     letter-spacing: 0em;
-    /* text-align: left; is overridden by the parent .hero-content for centering */
-    color: #FFFFFF; /* Choose color that fits the background */
+    color: #FFFFFF;
 }
 
 .photos-grid {
@@ -383,10 +393,10 @@ h2 {
 
 .photo-item {
     width: calc(50% - 40px);
-    margin: 20px; /* 50% pour 2 par ligne, ajustez le 10px si vous changez le gap */
-    overflow: hidden; /* Si vous utilisez object-fit pour vos images */
-    height: auto; /* Maintient l'aspect ratio */
-    aspect-ratio: 1; /* Force le ratio à 4:3 */
+    margin: 20px; 
+    overflow: hidden; 
+    height: auto; 
+    aspect-ratio: 1; 
 }
 
 .photo-item img {
@@ -437,5 +447,196 @@ h2 {
         flex-basis: 100%;
     }
 
+
+}
+
+@media only screen and (max-width: 768px) { /* Ajuste ce point de rupture selon tes besoins */
+    .photos-grid, .photos-container, .photo-content {
+        flex-direction: column;
+        justify-content: space-around; /* Cela assure un espacement autour de chaque élément */
+        margin: 10px; /* Espace entre les éléments */
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .filters {
+        flex-direction: row;
+    }
+
+    .filters select {
+        padding: 10px 10px;
+        margin-right: 0px;
+        border: 1,3px solid #b8bbc2; 
+        border-radius: 8px; 
+        background-color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    /* Container pour les sélecteurs Catégorie et Format */
+    .filter-left {
+        display: flex;
+        gap: 10px; 
+    }
+
+    #photo-order {
+        margin-left: 0px; 
+    }
+
+    .photo-item { 
+        margin: 0px;
+        padding-bottom: 10px;
+    }
+
+    .interest-button-section, .content-section {
+        flex-direction: column;
+        justify-content: space-around; /* Cela assure un espacement autour de chaque élément */
+        margin: 10px;
+        align-items:first baseline;
+    }
+
+    .photo-item {
+        width: 100%; /* Chaque image prend la pleine largeur */
+    }
+
+    .photo-image {
+        order: -1;
+    }
+
+    .centered-text {
+        font-family: 'Space Mono', monospace;
+        font-size: 2em;
+        font-style: italic;
+        font-weight: 700;
+        line-height: 142px;
+        letter-spacing: 0em;
+        color: #FFFFFF;
+    }
+
+    /* Style pour la modale de contact */
+    .contact-modal {
+        display: flex;
+        align-items: center;
+    }
+
+    .contact-modal form {
+        width: 90%; /* Réduit la largeur du formulaire pour s'adapter aux petits écrans */
+        margin: auto; /* Centre le formulaire horizontalement */
+    }
+
+    .form-container {
+        padding: 10px; /* Réduit le padding pour les petits écrans */
+    }
+
+    /* Réduire la taille de la police pour les labels */
+    .contact-modal label {
+        font-size: 10px; /* Taille de la police réduite pour les petits écrans */
+        line-height: 16px; /* Hauteur de ligne ajustée */
+    }
+
+    /* Style du Header de formulaire */
+    .form-header {
+        height: 80px; /* Hauteur réduite pour le header */
+    }
+
+    /* Styles pour les champs de saisie */
+    .contact-modal input[type="text"],
+    .contact-modal input[type="email"],
+    .contact-modal input[type="submit"],
+    .contact-modal textarea {
+        padding: 10px; /* Réduit le padding pour les champs de saisie */
+    }
+
+    /* Réduction de la hauteur du champ de message textarea */
+    .contact-modal textarea {
+        height: 60px; /* Hauteur réduite pour le textarea */
+    }
+
+    /* Ajustements pour le bouton envoyer */
+    .contact-modal input[type="submit"] {
+        padding: 8px; /* Espace intérieur ajusté pour le bouton */
+    }
+
+
+    .site-title {
+        color: #e00000;
+        font-size: 1em;
+    }
+
+    .menu-burger {
+        display: block; /* Affiche le bouton burger */
+    }
+
+    .menu-wrapper {
+        display: none; /* Assure que le menu est caché par défaut */
+        width: 100%; /* Le menu prend toute la largeur une fois ouvert */
+    }
+
+    /* Lorsque le menu est ouvert, il s'affiche en colonne */
+    .menu-wrapper .header-menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Style pour les éléments de menu sur les petits écrans */
+    .menu-wrapper .header-menu li {
+        text-align: center; /* Centre le texte */
+        width: 100%; /* Chaque élément du menu prend toute la largeur */
+        padding: 10px 0; /* Ajuste l'espacement */
+    }
+
+    .menu-wrapper .header-menu li a {
+        display: block; /* Assure que les liens prennent toute la largeur pour un clic facile */
+    }
+
+    .photo-image, .photo-info {
+        width: 100%;
+      }
+    
+    /* Cacher arrow-previer dans .content-section */
+    .content-section .arrow-previer {
+    display: none;
+    }
+
+    /* Ajuster l'ordre des éléments dans .content-section pour que le texte <p> soit au-dessus du bouton */
+    .content-section p { /* Ceci peut nécessiter que .content-section soit un conteneur flex */
+        padding-bottom: 10px;
+    }
+
+    /* Modifier l'affichage des related-photo pour qu'elles s'alignent verticalement */
+    .related-photos h3 {
+        text-align: center;
+    }
+
+    .arrow-preview {
+        display: none;
+    }
+
+    .header-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .top-row {
+        display: flex;
+        justify-content: space-between; /* Ajuste la disposition de site-branding et menu-burger */
+        align-items: center; /* Centre les éléments verticalement */
+        width: 100%; /* Assure que le conteneur prend toute la largeur */
+    }
+    
+    .menu-wrapper {
+        width: 100%; /* Assure que le wrapper prend toute la largeur */
+    }
+    
+
+    .footer-container, .footer-navigation {
+        flex-direction: column;
+        display: flex;
+    }
+
+    .footer-navigation li {
+        padding-bottom: 20px;
+    }
 
 }
